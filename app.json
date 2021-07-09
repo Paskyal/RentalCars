@@ -1,0 +1,24 @@
+{
+    "id": "430f92ee-12c9-4840-83cb-a2a3e8d507a6",
+    "name": "Rental Cars",
+    "publisher": "Pasha Panchenko",
+    "version": "1.0.0.0",
+    "brief": "",
+    "description": "",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "18.0.0.0",
+    "idRanges": [{
+        "from": 50100,
+        "to": 50149
+    }],
+    "contextSensitiveHelpUrl": "https://RentalCars.com/help/",
+    "showMyCode": true,
+    "runtime": "7.0"
+}

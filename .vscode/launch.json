@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "RentalCars",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "Sandbox",
+            "environmentName": "RentalCars",
+            "startupObjectId": 9022,
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "3239189e-1347-4b0d-8c93-e349ad3f2e99",
+            "schemaUpdateMode": "ForceSync"
+            
+        }
+    ]
+}
