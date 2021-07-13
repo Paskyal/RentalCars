@@ -1,3 +1,7 @@
+
+/// <summary>
+/// Table Rental Order (ID 50100).
+/// </summary>
 table 50100 "Rental Order"
 {
     Caption = 'Rental Order';
@@ -30,6 +34,10 @@ table 50100 "Rental Order"
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
             TableRelation = Customer;
+            trigger OnValidate()
+            begin
+                CopyFromCustomer();
+            end;
         }
         field(4; "Posting Date"; Date)
         {
@@ -52,6 +60,11 @@ table 50100 "Rental Order"
             Editable = false;
             TableRelation = "No. Series";
         }
+        field(7; "Customer Discount"; Decimal)
+        {
+            Caption = 'Customer Discount';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys
@@ -66,6 +79,9 @@ table 50100 "Rental Order"
         InitInsert();
     end;
 
+    /// <summary>
+    /// InitInsert.
+    /// </summary>
     procedure InitInsert()
     begin
         if "No." = '' then begin
@@ -90,6 +106,19 @@ table 50100 "Rental Order"
         Commit();
     end;
 
+    local procedure CopyFromCustomer()
+    var
+        Customer: Record Customer;
+    begin
+        Customer.Get("Customer No.");
+        Rec.Validate("Customer Discount", Customer."Customer Discount");
+    end;
+
+
+    /// <summary>
+    /// GetNoSeriesCode.
+    /// </summary>
+    /// <returns>Return value of type Code[20].</returns>
     procedure GetNoSeriesCode(): Code[20]
     begin
         exit(NoSeriesMgt.GetNoSeriesWithCheck(RentalSetup."Order Nos.", false, "No. Series"));

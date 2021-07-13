@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Rental Order Card (ID 50102).
+/// </summary>
 page 50102 "Rental Order Card"
 {
 
@@ -35,6 +38,12 @@ page 50102 "Rental Order Card"
                     Caption = 'Customer Name';
                     ShowMandatory = true;
                     ToolTip = 'Specifies the name of the customer who will receive the products and be billed by default.';
+
+                }
+                field("Customer Discount"; Rec."Customer Discount")
+                {
+                    ToolTip = 'Specifies the value of the Customer Discount field';
+                    ApplicationArea = All;
 
                 }
                 field("Salesperson Name"; Rec."Salesperson Name")

@@ -1,10 +1,13 @@
+/// <summary>
+/// TableExtension Rental Customer (ID 50102) extends Record Customer.
+/// </summary>
 tableextension 50102 "Rental Customer" extends Customer
 {
     fields
     {
-        field(50100; "Rental Discount"; Decimal)
+        field(50100; "Customer Discount"; Decimal)
         {
-            Caption = 'Rental Discount';
+            Caption = 'Customer Discount';
             DataClassification = CustomerContent;
 
         }

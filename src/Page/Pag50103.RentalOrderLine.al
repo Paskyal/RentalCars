@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Rental Order Line (ID 50103).
+/// </summary>
 page 50103 "Rental Order Line"
 {
     Caption = 'Rental Order Line';
@@ -39,15 +42,16 @@ page 50103 "Rental Order Line"
                     ToolTip = 'Specifies the value of the Days Amt. field';
                     ApplicationArea = All;
                 }
-                field("Total Discount"; Rec."Line Discount")
+                field("Line Discount"; Rec."Line Discount")
                 {
-                    Caption = 'Total Discount';
+                    Caption = 'Line Discount';
                     ToolTip = 'Specifies the value of the Total Discount field';
                     ApplicationArea = All;
                 }
 
                 field("Line Amount"; Rec."Line Amount")
                 {
+                    Caption = 'Line Amount';
                     ToolTip = 'Specifies the value of the Line Amount field';
                     ApplicationArea = All;
                 }

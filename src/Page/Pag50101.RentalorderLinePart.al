@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Rental Order Line Part (ID 50101).
+/// </summary>
 page 50101 "Rental Order Line Part"
 {
 
@@ -56,12 +59,7 @@ page 50101 "Rental Order Line Part"
                     ToolTip = 'Specifies the value of the Days Amt. field';
                     ApplicationArea = All;
                 }
-                field("Customer Discount"; Rec."Customer Discount")
-                {
-                    ToolTip = 'Specifies the value of the Customer Discount field';
-                    ApplicationArea = All;
 
-                }
                 field("Car Discount"; Rec."Car Discount")
                 {
                     ToolTip = 'Specifies the value of the Car Discount field';
@@ -71,9 +69,9 @@ page 50101 "Rental Order Line Part"
                     //     CurrPage.Update(true);
                     // end;
                 }
-                field("Total Discount"; Rec."Line Discount")
+                field("Line Discount"; Rec."Line Discount")
                 {
-                    Caption = 'Total Discount';
+                    Caption = 'Line Discount';
                     ToolTip = 'Specifies the value of the Total Discount field';
                     ApplicationArea = All;
                 }

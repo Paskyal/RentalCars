@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Cars (ID 50104).
+/// </summary>
 page 50104 "Cars"
 {
 

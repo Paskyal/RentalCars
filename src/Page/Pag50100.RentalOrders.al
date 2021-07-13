@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Rental Orders (ID 50100).
+/// </summary>
 page 50100 "Rental Orders"
 {
     Caption = 'Rental Orders';

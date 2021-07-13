@@ -1,3 +1,6 @@
+/// <summary>
+/// Table Rental Order Line (ID 50101).
+/// </summary>
 table 50101 "Rental Order Line"
 {
     Caption = 'Rental Order Line';
@@ -67,12 +70,7 @@ table 50101 "Rental Order Line"
             Caption = 'Price a day';
             DataClassification = CustomerContent;
         }
-        field(61; "Customer Discount"; Decimal)
-        {
-            Caption = 'Customer Discount';
-            DataClassification = CustomerContent;
-            Editable = false;
-        }
+
         field(62; "Car Discount"; Decimal)
         {
             Caption = 'Car Discount';
@@ -81,19 +79,19 @@ table 50101 "Rental Order Line"
         }
         field(70; "Line Discount"; Decimal)
         {
-            Caption = 'Total Discount';
+            Caption = 'Line Discount';
             DataClassification = CustomerContent;
             MaxValue = 100;
             MinValue = 0;
             Editable = false;
-            trigger OnValidate()
-            begin
-                UpdateLineAmount();
-            end;
+            // trigger OnValidate()
+            // begin
+            //     UpdateLineAmount();
+            // end;
         }
         field(80; "Line Amount"; Decimal)
         {
-            Caption = 'Total Amount';
+            Caption = 'Line Amount';
             DataClassification = CustomerContent;
             Editable = false;
         }

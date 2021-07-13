@@ -1,3 +1,6 @@
+/// <summary>
+/// Page Rental Customers (ID 50106).
+/// </summary>
 page 50106 "Rental Customers"
 {
     ApplicationArea = All;
@@ -30,9 +33,9 @@ page 50106 "Rental Customers"
                     ToolTip = 'Specifies the value of the Phone No. field';
                     ApplicationArea = All;
                 }
-                field("Rental Discount"; Rec."Rental Discount")
+                field("Customer Discount"; Rec."Customer Discount")
                 {
-                    ToolTip = 'Specifies the value of the Discount field';
+                    ToolTip = 'Specifies the value of the Customer Discount field';
                     ApplicationArea = All;
                 }
                 field(Payments; Rec.Payments)
