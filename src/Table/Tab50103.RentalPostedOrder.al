@@ -1,9 +1,9 @@
-table 50100 "Rental Order"
+table 50103 "Rental Posted Order"
 {
-    Caption = 'Rental Order';
+    Caption = 'Rental Posted Order';
     DataClassification = CustomerContent;
-    LookupPageId = "Rental Order line";
-    DrillDownPageId = "Rental Order line";
+    LookupPageId = "Rental Posted Order line";
+    DrillDownPageId = "Rental Posted Order line";
     fields
     {
         field(1; "No."; Code[20])
@@ -23,7 +23,6 @@ table 50100 "Rental Order"
             Caption = 'Salesperson Name';
             DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
-
         }
         field(3; "Customer No."; Code[20])
         {

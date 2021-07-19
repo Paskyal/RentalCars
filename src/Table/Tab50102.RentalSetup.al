@@ -2,7 +2,6 @@ table 50102 "Rental Setup"
 {
     Caption = 'Rental Setup';
     DataClassification = CustomerContent;
-
     fields
     {
         field(1; "Code"; Code[10])
@@ -23,7 +22,6 @@ table 50102 "Rental Setup"
             TableRelation = "No. Series";
         }
     }
-
     keys
     {
         key(PK; "Code")
@@ -31,5 +29,4 @@ table 50102 "Rental Setup"
             Clustered = true;
         }
     }
-
 }

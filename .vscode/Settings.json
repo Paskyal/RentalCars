@@ -7,7 +7,7 @@
         //"${AppSourceCop}",
         "${UICop}" 
     ],
-   // "CRS.ObjectNamePrefix": "BCAcademy ",
+    "CRS.ObjectNamePrefix": "Rental ",
     "CRS.FileNamePattern": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
     "CRS.FileNamePatternExtensions": "<ObjectTypeShort>.<ObjectId>.<ObjectNameShort>.<BaseNameShort>.al",
     "CRS.OnSaveAlFileAction": "Rename",

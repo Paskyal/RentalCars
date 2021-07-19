@@ -1,19 +1,18 @@
-pageextension 50106 "RoleCenterExt" extends "Business Manager Role Center"
-
+pageextension 50106 "Rental RoleCenterExt" extends "Business Manager Role Center"
 {
     actions
     {
         addafter(Action41)
         {
-            group(Rental)
+            group("Rental Rental")
             {
                 Caption = 'Rental';
                 ToolTip = 'Make rental orders, find cars for rent';
-                action(Cars)
+                action("Rental Cars")
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Cars';
-                    RunObject = page "Cars";
+                    RunObject = page "Rental Cars";
                 }
                 action("Rental Orders")
                 {
@@ -34,7 +33,6 @@ pageextension 50106 "RoleCenterExt" extends "Business Manager Role Center"
                     RunObject = report "Rental Orders Report";
                 }
             }
-
         }
         addafter("Sales Invoice")
         {
@@ -49,4 +47,3 @@ pageextension 50106 "RoleCenterExt" extends "Business Manager Role Center"
         }
     }
 }
-

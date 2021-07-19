@@ -1,9 +1,9 @@
-table 50101 "Rental Order Line"
+table 50104 "Rental Posted Order Line"
 {
-    Caption = 'Rental Order Line';
+    Caption = 'Rental Posted Order Line';
     DataClassification = CustomerContent;
-    LookupPageId = "Rental Order Line";
-    DrillDownPageId = "Rental Order Line";
+    LookupPageId = "Rental Posted Order Line";
+    DrillDownPageId = "Rental Posted Order Line";
 
     fields
     {

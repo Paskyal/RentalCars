@@ -1,7 +1,4 @@
-/// <summary>
-/// Page Cars (ID 50104).
-/// </summary>
-page 50104 "Cars"
+page 50104 "Rental Cars"
 {
 
     ApplicationArea = All;
@@ -9,7 +6,7 @@ page 50104 "Cars"
     PageType = List;
     SourceTable = Item;
     UsageCategory = Lists;
-    CardPageId = "Cars Card";
+    CardPageId = "Rental Cars Card";
     Editable = false;
     SourceTableView = where(Type = const(Rental));
     PromotedActionCategories = 'New,Process,Report,Item,History,Prices & Discounts,Request Approval,Periodic Activities,Inventory,Attributes';
@@ -25,14 +22,14 @@ page 50104 "Cars"
                     ToolTip = 'Specifies the value of the No. field';
                     ApplicationArea = All;
                 }
-                field("Description"; Rec."Description")
+                field(Description; Rec."Description")
                 {
                     Caption = 'Model,Year';
                     ToolTip = 'Specifies the value of the Description field';
                     ApplicationArea = All;
                 }
 
-                field(Mileage; Rec.Mileage)
+                field(Mileage; Rec."Rental Mileage")
                 {
                     ToolTip = 'Specifies the value of the Mileage field';
                     ApplicationArea = All;
@@ -43,7 +40,7 @@ page 50104 "Cars"
                     ToolTip = 'Specifies the value of the Unit Price field';
                     ApplicationArea = All;
                 }
-                field("Car Discount"; Rec."Car Discount")
+                field("Rental Car Discount"; Rec."Rental Car Discount")
                 {
                     Caption = 'Discount';
                     ToolTip = 'Specifies the value of the Car Discount field';
@@ -60,7 +57,7 @@ page 50104 "Cars"
             group(PricesandDiscounts)
             {
                 Caption = 'Rental Prices & Discounts';
-                action(Prices_Prices)
+                action("Prices_Prices")
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Rental Prices';
@@ -80,7 +77,7 @@ page 50104 "Cars"
                         ShowPrices();
                     end;
                 }
-                action(Prices_LineDiscounts)
+                action("Prices_LineDiscounts")
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Rental Discounts';

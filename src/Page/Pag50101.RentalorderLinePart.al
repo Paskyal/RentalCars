@@ -1,9 +1,5 @@
-/// <summary>
-/// Page Rental Order Line Part (ID 50101).
-/// </summary>
 page 50101 "Rental Order Line Part"
 {
-
     Caption = 'Lines';
     PageType = ListPart;
     SourceTable = "Rental Order Line";
@@ -60,14 +56,10 @@ page 50101 "Rental Order Line Part"
                     ApplicationArea = All;
                 }
 
-                field("Car Discount"; Rec."Car Discount")
+                field("Rental Car Discount"; Rec."Rental Car Discount")
                 {
                     ToolTip = 'Specifies the value of the Car Discount field';
                     ApplicationArea = All;
-                    // trigger OnLookup(var Text: Text): Boolean
-                    // begin
-                    //     CurrPage.Update(true);
-                    // end;
                 }
                 field("Line Discount"; Rec."Line Discount")
                 {
@@ -81,7 +73,6 @@ page 50101 "Rental Order Line Part"
                     ApplicationArea = All;
                 }
             }
-
         }
     }
 }

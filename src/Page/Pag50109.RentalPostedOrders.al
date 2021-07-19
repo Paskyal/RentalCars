@@ -1,9 +1,9 @@
-page 50100 "Rental Orders"
+page 50109 "Rental Posted Orders"
 {
-    Caption = 'Rental Orders';
+    Caption = 'Rental Posted Orders';
     PageType = List;
-    SourceTable = "Rental Order";
-    CardPageId = "Rental Order Card";
+    SourceTable = "Rental Posted Order";
+    CardPageId = "Rental Posted Order Card";
     UsageCategory = Lists;
     ApplicationArea = All;
     layout

@@ -33,7 +33,7 @@ page 50106 "Rental Customers"
                     ToolTip = 'Specifies the value of the Phone No. field';
                     ApplicationArea = All;
                 }
-                field("Customer Discount"; Rec."Customer Discount")
+                field("Rental Customer Discount"; Rec."Rental Customer Discount")
                 {
                     ToolTip = 'Specifies the value of the Customer Discount field';
                     ApplicationArea = All;

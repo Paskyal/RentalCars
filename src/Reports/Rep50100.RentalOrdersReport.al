@@ -11,34 +11,27 @@ report 50100 "Rental Orders Report"
         {
             column(No_; "No.")
             {
-
             }
             column(Customer_No_; "Customer No.")
             {
-
             }
             column(Customer_Name; "Customer Name")
             {
-
             }
             column(Salesperson_Name; "Salesperson Name")
             {
-
             }
             column(Posting_Date; "Posting Date")
             {
-
             }
         }
         dataitem("Rental Order Line"; "Rental Order Line")
         {
             column(Order_No_; "Order No.")
             {
-
             }
             column(Car_No_; "Car No.")
             {
-
             }
             column(Car_Description; "Car Description")
             {
@@ -46,19 +39,15 @@ report 50100 "Rental Orders Report"
             }
             column(Price_a_day; "Price a day")
             {
-
             }
             column(Days_Amt_; "Days Amt.")
             {
-
             }
             column(Total_Discount; "Line Discount")
             {
-
             }
             column(Line_Amount; "Line Amount")
             {
-
             }
         }
     }

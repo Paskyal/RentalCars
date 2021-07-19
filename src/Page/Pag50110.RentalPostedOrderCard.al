@@ -1,10 +1,13 @@
-page 50102 "Rental Order Card"
+page 50110 "Rental Posted Order Card"
 {
-    Caption = 'Rental Order';
+    Caption = 'Rental Posted Order';
     PageType = Card;
-    SourceTable = "Rental Order";
+    SourceTable = "Rental Posted Order";
     UsageCategory = Lists;
     ApplicationArea = all;
+    Editable = false;
+    InsertAllowed = false;
+    DeleteAllowed = false;
     layout
     {
         area(content)

@@ -1,7 +1,7 @@
 /// <summary>
-/// Page Cars Card (ID 50105).
+/// Page Rental Rental Rental Cars Card (ID 50105).
 /// </summary>
-page 50105 "Cars Card"
+page 50105 "Rental Cars Card"
 {
 
     Caption = 'Car specifications';
@@ -31,14 +31,14 @@ page 50105 "Cars Card"
                     ToolTip = 'Specifies if the item card represents a physical inventory unit (Inventory), a labor time unit (Service), or a physical unit that is not tracked in inventory (Non-Inventory).';
                 }
             }
-            field("Description"; Rec."Description")
+            field(Description; Rec."Description")
             {
                 Caption = 'Model,Year';
                 ToolTip = 'Specifies the value of the Description field';
                 ApplicationArea = All;
             }
 
-            field(Mileage; Rec.Mileage)
+            field(Mileage; Rec."Rental Mileage")
             {
                 ToolTip = 'Specifies the value of the Mileage field';
                 ApplicationArea = All;
@@ -49,7 +49,7 @@ page 50105 "Cars Card"
                 ToolTip = 'Specifies the value of the Unit Price field';
                 ApplicationArea = All;
             }
-            field("Car Discount"; Rec."Car Discount")
+            field("Rental Car Discount"; Rec."Rental Car Discount")
             {
                 Caption = 'Discount';
                 ToolTip = 'Specifies the value of the Car Discount field';

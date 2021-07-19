@@ -7,17 +7,13 @@ pageextension 50100 "Rental Customer Card" extends "Customer Card"
     {
         addafter("Disable Search by Name")
         {
-            field("Customer Discount"; Rec."Customer Discount")
+            field("Rental Customer Discount"; Rec."Rental Customer Discount")
             {
                 ToolTip = 'Specifies the value of the Discount field';
                 ApplicationArea = All;
                 MaxValue = 100;
                 MinValue = 0;
-
             }
         }
-
-
     }
-
 }
