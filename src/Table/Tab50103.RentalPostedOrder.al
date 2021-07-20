@@ -83,14 +83,14 @@ table 50103 "Rental Posted Order"
     begin
         if "No." = '' then begin
             TestNoSeries();
-            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", 0D, "No.", "No. Series");//!
+            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", "Posting Date", "No.", "No. Series");
         end;
     end;
 
     local procedure TestNoSeries()
     begin
         GetRentalSetup();
-        RentalSetup.Testfield("Order Nos.");
+        RentalSetup.Testfield("Posted Order Nos.");
 
     end;
 
@@ -127,7 +127,7 @@ table 50103 "Rental Posted Order"
 
     procedure GetNoSeriesCode(): Code[20]
     begin
-        exit(NoSeriesMgt.GetNoSeriesWithCheck(RentalSetup."Order Nos.", false, "No. Series"));
+        exit(NoSeriesMgt.GetNoSeriesWithCheck(RentalSetup."Posted Order Nos.", false, "No. Series"));
     end;
 
     var

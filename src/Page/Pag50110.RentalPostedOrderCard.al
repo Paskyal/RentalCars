@@ -53,7 +53,7 @@ page 50110 "Rental Posted Order Card"
                     ApplicationArea = All;
                 }
             }
-            part("Rental Order Line Part"; "Rental Order Line Part")
+            part("Rental Posted Order Line Part"; "Rental Posted Order Line Part")
             {
                 SubPageLink = "Order No." = field("No.");
                 ApplicationArea = all;

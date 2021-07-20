@@ -33,6 +33,17 @@ pageextension 50106 "Rental RoleCenterExt" extends "Business Manager Role Center
                     RunObject = report "Rental Orders Report";
                 }
             }
+            group("Rental Posted")
+            {
+                Caption = 'Rental Posted';
+                ToolTip = 'View Posted Rental Orders';
+                action("Rental Posted Rental Orders")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Posted Rental Orders';
+                    RunObject = page "Rental Posted Orders";
+                }
+            }
         }
         addafter("Sales Invoice")
         {

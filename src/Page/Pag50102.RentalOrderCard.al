@@ -5,6 +5,7 @@ page 50102 "Rental Order Card"
     SourceTable = "Rental Order";
     UsageCategory = Lists;
     ApplicationArea = all;
+    PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
     layout
     {
         area(content)
@@ -58,4 +59,81 @@ page 50102 "Rental Order Card"
             }
         }
     }
+    actions
+    {
+        area(processing)
+        {
+            group("P&osting")
+            {
+                Caption = 'P&osting';
+                Image = Post;
+                action(Post)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'P&ost';
+                    Ellipsis = true;
+                    Image = PostOrder;
+                    Promoted = true;
+                    PromotedOnly = true;
+                    PromotedCategory = Category6;
+                    PromotedIsBig = true;
+                    ShortCutKey = 'F9';
+                    ToolTip = 'Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books.';
+
+                    trigger OnAction()
+                    begin
+                        PostRentalOrder(CODEUNIT::"Rental Posted Order", "Navigate After Posting"::"Posted Document");
+                    end;
+                }
+            }
+        }
+    }
+    local procedure PostRentalOrder(PostingCodeunitID: Integer; Navigate: Enum "Navigate After Posting")
+    // var
+    //   RentalOrder: Record "Rental Order";
+    //     LinesInstructionMgt: Codeunit "Lines Instruction Mgt.";
+    //     InstructionMgt: Codeunit "Instruction Mgt.";
+    //     IsHandled: Boolean;
+    begin
+        //     if ApplicationAreaMgmtFacade.IsFoundationEnabled then
+        //         LinesInstructionMgt.SalesCheckAllLinesHaveQuantityAssigned(Rec);
+
+        // SendToPosting(PostingCodeunitID);
+
+        //     DocumentIsScheduledForPosting := "Job Queue Status" = "Job Queue Status"::"Scheduled for Posting";
+        //     DocumentIsPosted := (not SalesHeader.Get("Document Type", "No.")) or DocumentIsScheduledForPosting;
+        //     OnPostOnAfterSetDocumentIsPosted(SalesHeader, DocumentIsScheduledForPosting, DocumentIsPosted);
+
+        //     CurrPage.Update(false);
+
+        //     IsHandled := false;
+        //     OnPostDocumentBeforeNavigateAfterPosting(Rec, PostingCodeunitID, Navigate, DocumentIsPosted, IsHandled);
+        //     if IsHandled then
+        //         exit;
+
+        //     if PostingCodeunitID <> CODEUNIT::"Sales-Post (Yes/No)" then
+        //         exit;
+
+        //     case Navigate of
+        //         "Navigate After Posting"::"Posted Document":
+        //             begin
+        //                 if InstructionMgt.IsEnabled(InstructionMgt.ShowPostedConfirmationMessageCode) then
+        //                     ShowPostedConfirmationMessage();
+
+        //                 if DocumentIsScheduledForPosting or DocumentIsPosted then
+        //                     CurrPage.Close();
+        //             end;
+        // "Navigate After Posting"::"New Document":
+        //     if DocumentIsPosted then begin
+        //         Clear(SalesHeader);
+        //         SalesHeader.Init();
+        //         SalesHeader.Validate("Document Type", SalesHeader."Document Type"::Order);
+        //         OnPostOnBeforeSalesHeaderInsert(SalesHeader);
+        //         SalesHeader.Insert(true);
+        //         PAGE.Run(PAGE::"Sales Order", SalesHeader);
+        //     end;
+    end;
+
+    var
+        PostingCodeunitID: CODEUNIT "Rental Posted Order";
 }

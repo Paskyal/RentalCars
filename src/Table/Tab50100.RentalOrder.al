@@ -84,7 +84,7 @@ table 50100 "Rental Order"
     begin
         if "No." = '' then begin
             TestNoSeries();
-            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", 0D, "No.", "No. Series");//!
+            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", 0D, "No.", "No. Series");
         end;
     end;
 
@@ -130,6 +130,14 @@ table 50100 "Rental Order"
     begin
         exit(NoSeriesMgt.GetNoSeriesWithCheck(RentalSetup."Order Nos.", false, "No. Series"));
     end;
+
+    // trigger OnDelete()
+    // var
+    //     RentalOrderLine: Record "Rental Order Line";
+    // begin
+    //     RentalOrderLine.SetRange("Order No.", Rec."No.");
+    //     RentalOrderLine.DeleteAll(true);
+    // end;
 
     var
         RentalSetup: Record "Rental Setup";

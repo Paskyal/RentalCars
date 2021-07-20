@@ -1,13 +1,16 @@
-page 50108 "Rental Posted Order Line"
+page 50111 "Rental Posted Order Line Part"
 {
-    Caption = 'Rental Posted Order Line';
-    PageType = List;
+    Caption = 'Posted Order Line';
+    PageType = ListPart;
     SourceTable = "Rental Posted Order Line";
     UsageCategory = Administration;
-    ApplicationArea = All;
+    ApplicationArea = all;
+    PopulateAllFields = true;
+    AutoSplitKey = true;
     Editable = false;
     InsertAllowed = false;
     DeleteAllowed = false;
+
     layout
     {
         area(content)
@@ -18,26 +21,48 @@ page 50108 "Rental Posted Order Line"
                 {
                     ToolTip = 'Specifies the value of the Order No. field';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Car No."; Rec."Car No.")
                 {
-                    ToolTip = 'Specifies the value of the Item No. field';
+                    Caption = 'Car No.';
+                    ToolTip = 'Specifies the value of the Car No. field';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    begin
+                        // CurrPage.Update(true);
+                        Rec.CalcFields("Car Description");
+                    end;
                 }
                 field("Car Description"; Rec."Car Description")
                 {
-                    ToolTip = 'Specifies the value of the Car Description field';
+                    ToolTip = 'Specifies the value of the "Car Description" field';
                     ApplicationArea = All;
                 }
-                field("Price a day"; Rec."Price a day")
+                field(Price; Rec."Price a day")
                 {
-                    ToolTip = 'Specifies the value of the Price a day field';
+                    ToolTip = 'Specifies the value of the Price field';
+                    ApplicationArea = All;
+                }
+                field("Starting Date"; Rec."Starting Date")
+                {
+                    ToolTip = 'Specifies the value of the Starting Date field';
+                    ApplicationArea = All;
+                }
+                field("Ending Date"; Rec."Ending Date")
+                {
+                    ToolTip = 'Specifies the value of the Ending Date field';
                     ApplicationArea = All;
                 }
                 field("Days Amt."; Rec."Days Amt.")
                 {
-                    Caption = 'Days Amt.';
                     ToolTip = 'Specifies the value of the Days Amt. field';
+                    ApplicationArea = All;
+                }
+
+                field("Rental Car Discount"; Rec."Rental Car Discount")
+                {
+                    ToolTip = 'Specifies the value of the Car Discount field';
                     ApplicationArea = All;
                 }
                 field("Line Discount"; Rec."Line Discount")
@@ -46,15 +71,12 @@ page 50108 "Rental Posted Order Line"
                     ToolTip = 'Specifies the value of the Total Discount field';
                     ApplicationArea = All;
                 }
-
                 field("Line Amount"; Rec."Line Amount")
                 {
-                    Caption = 'Line Amount';
                     ToolTip = 'Specifies the value of the Line Amount field';
                     ApplicationArea = All;
                 }
             }
         }
     }
-
 }

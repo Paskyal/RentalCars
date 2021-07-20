@@ -6,6 +6,9 @@ page 50109 "Rental Posted Orders"
     CardPageId = "Rental Posted Order Card";
     UsageCategory = Lists;
     ApplicationArea = All;
+    Editable = false;
+    InsertAllowed = false;
+    DeleteAllowed = false;
     layout
     {
         area(content)
