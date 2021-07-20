@@ -82,13 +82,13 @@ page 50102 "Rental Order Card"
 
                     trigger OnAction()
                     begin
-                        PostRentalOrder(CODEUNIT::"Rental Posted Order", "Navigate After Posting"::"Posted Document");
+                        PostRentalOrder(CODEUNIT::"Rental Posted Order")//, "Navigate After Posting"::"Posted Document");
                     end;
                 }
             }
         }
     }
-    local procedure PostRentalOrder(PostingCodeunitID: Integer; Navigate: Enum "Navigate After Posting")
+    local procedure PostRentalOrder(PostingCodeunitID: Integer) // Navigate: Enum "Navigate After Posting")
     // var
     //   RentalOrder: Record "Rental Order";
     //     LinesInstructionMgt: Codeunit "Lines Instruction Mgt.";
@@ -98,7 +98,7 @@ page 50102 "Rental Order Card"
         //     if ApplicationAreaMgmtFacade.IsFoundationEnabled then
         //         LinesInstructionMgt.SalesCheckAllLinesHaveQuantityAssigned(Rec);
 
-        // SendToPosting(PostingCodeunitID);
+        SendToPosting(PostingCodeunitID);
 
         //     DocumentIsScheduledForPosting := "Job Queue Status" = "Job Queue Status"::"Scheduled for Posting";
         //     DocumentIsPosted := (not SalesHeader.Get("Document Type", "No.")) or DocumentIsScheduledForPosting;
@@ -111,7 +111,7 @@ page 50102 "Rental Order Card"
         //     if IsHandled then
         //         exit;
 
-        //     if PostingCodeunitID <> CODEUNIT::"Sales-Post (Yes/No)" then
+        //if PostingCodeunitID <> CODEUNIT::"Sales-Post (Yes/No)" then
         //         exit;
 
         //     case Navigate of
@@ -134,6 +134,23 @@ page 50102 "Rental Order Card"
         //     end;
     end;
 
-    var
-        PostingCodeunitID: CODEUNIT "Rental Posted Order";
+    procedure SendToPosting(PostingCodeunitID: Integer) IsSuccess: Boolean
+    // var
+    //     ErrorContextElement: Codeunit "Error Context Element";
+    //     ErrorMessageMgt: Codeunit "Error Message Management";
+    //     ErrorMessageHandler: Codeunit "Error Message Handler";
+    begin
+        //if not IsApprovedForPosting then
+        //   exit;
+
+        Commit();
+        // ErrorMessageMgt.Activate(ErrorMessageHandler);
+        // ErrorMessageMgt.PushContext(ErrorContextElement, RecordId, 0, '');
+        IsSuccess := CODEUNIT.Run(PostingCodeunitID, Rec);
+        // if not IsSuccess then
+        //    ErrorMessageHandler.ShowErrors;
+    end;
+
+    // var
+    //     PostingCodeunitID: CODEUNIT "Rental Posted Order";
 }
