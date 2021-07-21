@@ -22,7 +22,7 @@ codeunit 50100 "Rental Posted Order"
         RentalPostedOrder."No." := PostDocumentNo;
         RentalPostedOrder.Modify(true);
         CopyRentalOrderLineToPostedROLine(RentalOrder, PostDocumentNo);
-        // RentalOrder.Delete(true);
+        RentalOrder.Delete(true);
     end;
 
     Local procedure CopyRentalOrderLineToPostedROLine(RentalOrder: Record "Rental Order"; PostDocumentNo: Code[20]);

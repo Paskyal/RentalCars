@@ -54,9 +54,11 @@ table 50101 "Rental Order Line"
             Caption = 'Ending Date.';
             DataClassification = CustomerContent;
             trigger OnValidate()
+            var
+                EndingDateErr: label 'Ending Date cannot be earlier than Starting Date';
             begin
                 if (Rec."Starting Date" <> 0D) and ("Ending Date" < "Starting Date") then
-                    Error('Ending Date cannot be earlier than Starting Date');
+                    Error(EndingDateErr);
                 UpdateDaysAmt();
             end;
         }

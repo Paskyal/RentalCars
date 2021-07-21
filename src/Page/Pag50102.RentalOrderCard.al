@@ -88,69 +88,14 @@ page 50102 "Rental Order Card"
             }
         }
     }
-    local procedure PostRentalOrder(PostingCodeunitID: Integer) // Navigate: Enum "Navigate After Posting")
-    // var
-    //   RentalOrder: Record "Rental Order";
-    //     LinesInstructionMgt: Codeunit "Lines Instruction Mgt.";
-    //     InstructionMgt: Codeunit "Instruction Mgt.";
-    //     IsHandled: Boolean;
+    local procedure PostRentalOrder(PostingCodeunitID: Integer)
     begin
-        //     if ApplicationAreaMgmtFacade.IsFoundationEnabled then
-        //         LinesInstructionMgt.SalesCheckAllLinesHaveQuantityAssigned(Rec);
-
         SendToPosting(PostingCodeunitID);
-
-        //     DocumentIsScheduledForPosting := "Job Queue Status" = "Job Queue Status"::"Scheduled for Posting";
-        //     DocumentIsPosted := (not SalesHeader.Get("Document Type", "No.")) or DocumentIsScheduledForPosting;
-        //     OnPostOnAfterSetDocumentIsPosted(SalesHeader, DocumentIsScheduledForPosting, DocumentIsPosted);
-
-        //     CurrPage.Update(false);
-
-        //     IsHandled := false;
-        //     OnPostDocumentBeforeNavigateAfterPosting(Rec, PostingCodeunitID, Navigate, DocumentIsPosted, IsHandled);
-        //     if IsHandled then
-        //         exit;
-
-        //if PostingCodeunitID <> CODEUNIT::"Sales-Post (Yes/No)" then
-        //         exit;
-
-        //     case Navigate of
-        //         "Navigate After Posting"::"Posted Document":
-        //             begin
-        //                 if InstructionMgt.IsEnabled(InstructionMgt.ShowPostedConfirmationMessageCode) then
-        //                     ShowPostedConfirmationMessage();
-
-        //                 if DocumentIsScheduledForPosting or DocumentIsPosted then
-        //                     CurrPage.Close();
-        //             end;
-        // "Navigate After Posting"::"New Document":
-        //     if DocumentIsPosted then begin
-        //         Clear(SalesHeader);
-        //         SalesHeader.Init();
-        //         SalesHeader.Validate("Document Type", SalesHeader."Document Type"::Order);
-        //         OnPostOnBeforeSalesHeaderInsert(SalesHeader);
-        //         SalesHeader.Insert(true);
-        //         PAGE.Run(PAGE::"Sales Order", SalesHeader);
-        //     end;
     end;
 
     procedure SendToPosting(PostingCodeunitID: Integer) IsSuccess: Boolean
-    // var
-    //     ErrorContextElement: Codeunit "Error Context Element";
-    //     ErrorMessageMgt: Codeunit "Error Message Management";
-    //     ErrorMessageHandler: Codeunit "Error Message Handler";
     begin
-        //if not IsApprovedForPosting then
-        //   exit;
-
         Commit();
-        // ErrorMessageMgt.Activate(ErrorMessageHandler);
-        // ErrorMessageMgt.PushContext(ErrorContextElement, RecordId, 0, '');
         IsSuccess := CODEUNIT.Run(PostingCodeunitID, Rec);
-        // if not IsSuccess then
-        //    ErrorMessageHandler.ShowErrors;
     end;
-
-    // var
-    //     PostingCodeunitID: CODEUNIT "Rental Posted Order";
 }

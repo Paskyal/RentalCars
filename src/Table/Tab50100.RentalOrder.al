@@ -131,13 +131,13 @@ table 50100 "Rental Order"
         exit(NoSeriesMgt.GetNoSeriesWithCheck(RentalSetup."Order Nos.", false, "No. Series"));
     end;
 
-    // trigger OnDelete()
-    // var
-    //     RentalOrderLine: Record "Rental Order Line";
-    // begin
-    //     RentalOrderLine.SetRange("Order No.", Rec."No.");
-    //     RentalOrderLine.DeleteAll(true);
-    // end;
+    trigger OnDelete()
+    var
+        RentalOrderLine: Record "Rental Order Line";
+    begin
+        RentalOrderLine.SetRange("Order No.", Rec."No.");
+        RentalOrderLine.DeleteAll(true);
+    end;
 
     var
         RentalSetup: Record "Rental Setup";
