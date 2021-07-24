@@ -3,11 +3,8 @@ codeunit 50100 "Rental Posted Order"
     TableNo = "Rental Order";
 
     trigger OnRun()
-    var
-        DoneMsg: Label 'Done';
     begin
         CopyRentalOrderToPostedRO(Rec);
-        Message(DoneMsg);
     end;
 
     local procedure CopyRentalOrderToPostedRO(RentalOrder: Record "Rental Order")

@@ -79,10 +79,28 @@ page 50100 "Rental Orders"
     end;
 
     procedure SendToPosting(PostingCodeunitID: Integer) IsSuccess: Boolean
-    var
     begin
         Commit();
         IsSuccess := CODEUNIT.Run(PostingCodeunitID, Rec);
+        ShowPostedConfirmationMessage();
     end;
+
+    local procedure ShowPostedConfirmationMessage();
+    var
+        RentalOrder: Record "Rental Order";
+        RentalPostedOrder: Record "Rental Posted Order";
+        InstructionMgt: Codeunit "Instruction Mgt.";
+        OpenPostedRentalOrderQst: Label 'The order is posted as number %1 and moved to the Posted Rental Orders window.\\Do you want to open the posted order?', Comment = '%1 = posted document number';
+    begin
+        if not RentalOrder.Get(Rec."No.") then begin
+            RentalPostedOrder.FindLast();
+            if InstructionMgt.ShowConfirm(StrSubstNo(OpenPostedRentalOrderQst, RentalPostedOrder."No."),
+                 InstructionMgt.ShowPostedConfirmationMessageCode())
+            then
+                PAGE.Run(PAGE::"Rental Posted Orders", RentalPostedOrder);
+        end;
+    end;
+
+
 
 }

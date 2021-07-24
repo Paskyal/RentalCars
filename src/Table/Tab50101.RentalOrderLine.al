@@ -46,6 +46,7 @@ table 50101 "Rental Order Line"
             begin
                 if (Rec."Ending Date" <> 0D) and (Rec."Starting Date" > Rec."Ending Date") then
                     Error('Starting Date cannot be later than Ending Date');
+                CheckStartingDate();
                 UpdateDaysAmt();
             end;
         }
@@ -59,6 +60,7 @@ table 50101 "Rental Order Line"
             begin
                 if (Rec."Starting Date" <> 0D) and ("Ending Date" < "Starting Date") then
                     Error(EndingDateErr);
+                CheckEndingDate();
                 UpdateDaysAmt();
             end;
         }
@@ -90,7 +92,7 @@ table 50101 "Rental Order Line"
             MinValue = 0;
             trigger OnValidate()
             begin
-                UdateLineDiscount(0);
+                UpdateLineDiscount(0);
                 UpdateLineAmount();
             end;
 
@@ -120,6 +122,64 @@ table 50101 "Rental Order Line"
             Clustered = true;
         }
     }
+
+    var
+        RentalPostedOrderLine: Record "Rental Posted Order Line";
+        ErrMsg: Label 'The car is unavailable on this date';
+
+    procedure CheckEndingDate()
+
+    begin
+        RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
+        if RentalPostedOrderLine.FindSet(false, false) then
+            repeat
+                if (RentalPostedOrderLine."Ending Date" >= "Ending Date") and
+                 (RentalPostedOrderLine."Starting Date" <= "Ending Date")
+                 then
+                    Error(ErrMsg);
+                if ("Starting Date" = 0D) then exit;
+                if ("Starting Date" < RentalPostedOrderLine."Ending Date") and
+                ("Ending Date" > RentalPostedOrderLine."Ending Date")
+                then
+                    Error(ErrMsg);
+            until RentalPostedOrderLine.Next() = 0;
+    end;
+
+    procedure CheckStartingDate()
+    begin
+        RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
+        if RentalPostedOrderLine.FindSet(false, false) then
+            repeat
+                if (RentalPostedOrderLine."Starting Date" <= "Starting Date") and
+                (RentalPostedOrderLine."Ending Date" >= "Starting Date")
+       then
+                    Error(ErrMsg);
+                if ("Starting Date" < RentalPostedOrderLine."Ending Date") and
+          ("Ending Date" > RentalPostedOrderLine."Ending Date")
+          then
+                    Error(ErrMsg);
+            until RentalPostedOrderLine.Next() = 0;
+
+    end;
+
+    procedure UpdateLineDiscount(CustomerDiscount: decimal): boolean
+    var
+        RentalOrder: Record "Rental Order";
+    begin
+        if CustomerDiscount = 0 then begin
+            RentalOrder.Get("Order No.");
+            CustomerDiscount := RentalOrder."Rental Customer Discount";
+        end;
+
+        case true of
+            (Rec."Rental Car Discount" >= CustomerDiscount):
+                Rec.Validate("Line Discount", "Rental Car Discount");
+            (Rec."Rental Car Discount" < CustomerDiscount):
+                Rec.Validate("Line Discount", CustomerDiscount);
+        end;
+        exit(format(Rec) <> format(xRec));
+    end;
+
     local procedure CopyFromItem()
     var
         Item: Record Item;
@@ -140,23 +200,5 @@ table 50101 "Rental Order Line"
     local procedure UpdateLineAmount()
     begin
         Rec.Validate("Line Amount", "Days Amt." * "Price a day" - ("Days Amt." * "Price a day" * ("Line Discount" / 100)));
-    end;
-
-    procedure UdateLineDiscount(CustomerDiscount: decimal): boolean
-    var
-        RentalOrder: Record "Rental Order";
-    begin
-        if CustomerDiscount = 0 then begin
-            RentalOrder.Get("Order No.");
-            CustomerDiscount := RentalOrder."Rental Customer Discount";
-        end;
-
-        case true of
-            (Rec."Rental Car Discount" >= CustomerDiscount):
-                Rec.Validate("Line Discount", "Rental Car Discount");//CustomerDiscount
-            (Rec."Rental Car Discount" < CustomerDiscount):
-                Rec.Validate("Line Discount", CustomerDiscount);
-        end;
-        exit(format(Rec) <> format(xRec));
     end;
 }

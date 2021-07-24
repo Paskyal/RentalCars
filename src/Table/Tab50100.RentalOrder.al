@@ -121,7 +121,7 @@ table 50100 "Rental Order"
         RentalOrderLine.SetRange("Order No.", Rec."No.");
         if RentalOrderLine.FindSet(true, false) then
             repeat
-                if RentalOrderLine.UdateLineDiscount("Rental Customer Discount") then
+                if RentalOrderLine.UpdateLineDiscount("Rental Customer Discount") then
                     RentalOrderLine.Modify(true);
             until RentalOrderLine.Next() = 0;
     end;
