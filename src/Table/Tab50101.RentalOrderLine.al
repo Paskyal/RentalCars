@@ -128,19 +128,16 @@ table 50101 "Rental Order Line"
         ErrMsg: Label 'The car is unavailable on this date';
 
     procedure CheckEndingDate()
-
     begin
         RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
         if RentalPostedOrderLine.FindSet(false, false) then
             repeat
-                if (RentalPostedOrderLine."Ending Date" >= "Ending Date") and
-                 (RentalPostedOrderLine."Starting Date" <= "Ending Date")
-                 then
+                RentalPostedOrderLine.SetFilter("Ending Date", '>= %1', "Ending Date");
+                RentalPostedOrderLine.SetFilter("Starting Date", '<= %1', "Ending Date");
+                if RentalPostedOrderLine.FindSet(false, false) then
                     Error(ErrMsg);
-                if ("Starting Date" = 0D) then exit;
-                if ("Starting Date" < RentalPostedOrderLine."Ending Date") and
-                ("Ending Date" > RentalPostedOrderLine."Ending Date")
-                then
+                if (Rec."Starting Date" <> 0D) and ("Starting Date" < RentalPostedOrderLine."Ending Date")
+                and ("Ending Date" > RentalPostedOrderLine."Ending Date") then
                     Error(ErrMsg);
             until RentalPostedOrderLine.Next() = 0;
     end;
@@ -151,15 +148,12 @@ table 50101 "Rental Order Line"
         if RentalPostedOrderLine.FindSet(false, false) then
             repeat
                 if (RentalPostedOrderLine."Starting Date" <= "Starting Date") and
-                (RentalPostedOrderLine."Ending Date" >= "Starting Date")
-       then
+                (RentalPostedOrderLine."Ending Date" >= "Starting Date") then
                     Error(ErrMsg);
                 if ("Starting Date" < RentalPostedOrderLine."Ending Date") and
-          ("Ending Date" > RentalPostedOrderLine."Ending Date")
-          then
+          ("Ending Date" > RentalPostedOrderLine."Ending Date") then
                     Error(ErrMsg);
             until RentalPostedOrderLine.Next() = 0;
-
     end;
 
     procedure UpdateLineDiscount(CustomerDiscount: decimal): boolean
