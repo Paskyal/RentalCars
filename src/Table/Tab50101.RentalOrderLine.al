@@ -46,7 +46,7 @@ table 50101 "Rental Order Line"
             begin
                 if (Rec."Ending Date" <> 0D) and (Rec."Starting Date" > Rec."Ending Date") then
                     Error('Starting Date cannot be later than Ending Date');
-                CheckStartingDate();
+                CheckAvailableDates();
                 UpdateDaysAmt();
             end;
         }
@@ -60,7 +60,7 @@ table 50101 "Rental Order Line"
             begin
                 if (Rec."Starting Date" <> 0D) and ("Ending Date" < "Starting Date") then
                     Error(EndingDateErr);
-                CheckEndingDate();
+                CheckAvailableDates();
                 UpdateDaysAmt();
             end;
         }
@@ -127,19 +127,23 @@ table 50101 "Rental Order Line"
         RentalPostedOrderLine: Record "Rental Posted Order Line";
         ErrMsg: Label 'The car is unavailable on this date';
 
-    procedure CheckEndingDate()
+    procedure CheckAvailableDates()
     begin
         RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
-        if RentalPostedOrderLine.FindSet(false, false) then
-            repeat
-                RentalPostedOrderLine.SetFilter("Ending Date", '>= %1', "Ending Date");
-                RentalPostedOrderLine.SetFilter("Starting Date", '<= %1', "Ending Date");
-                if RentalPostedOrderLine.FindSet(false, false) then
-                    Error(ErrMsg);
-                if (Rec."Starting Date" <> 0D) and ("Starting Date" < RentalPostedOrderLine."Ending Date")
-                and ("Ending Date" > RentalPostedOrderLine."Ending Date") then
-                    Error(ErrMsg);
-            until RentalPostedOrderLine.Next() = 0;
+        // if RentalPostedOrderLine.FindSet(false, false) then
+        //     repeat
+        RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', "Starting Date", "Ending Date");
+        RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', "Starting Date", "Ending Date");
+        IF not RentalPostedOrderLine.IsEmpty() THEN
+            Error(ErrMsg);
+        //     RentalPostedOrderLine.SetFilter("Ending Date", '>= %1', "Ending Date");
+        //     RentalPostedOrderLine.SetFilter("Starting Date", '<= %1', "Ending Date");
+        //     if RentalPostedOrderLine.FindSet(false, false) then
+        //         Error(ErrMsg);
+        //     if ("Starting Date" < RentalPostedOrderLine."Starting Date") and
+        //  ("Ending Date" > RentalPostedOrderLine."Ending Date") then
+        //         Error(ErrMsg);
+        // until RentalPostedOrderLine.Next() = 0;
     end;
 
     procedure CheckStartingDate()
@@ -150,7 +154,7 @@ table 50101 "Rental Order Line"
                 if (RentalPostedOrderLine."Starting Date" <= "Starting Date") and
                 (RentalPostedOrderLine."Ending Date" >= "Starting Date") then
                     Error(ErrMsg);
-                if ("Starting Date" < RentalPostedOrderLine."Ending Date") and
+                if ("Starting Date" < RentalPostedOrderLine."Starting Date") and
           ("Ending Date" > RentalPostedOrderLine."Ending Date") then
                     Error(ErrMsg);
             until RentalPostedOrderLine.Next() = 0;
