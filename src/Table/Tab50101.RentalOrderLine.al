@@ -130,34 +130,10 @@ table 50101 "Rental Order Line"
     procedure CheckAvailableDates()
     begin
         RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
-        // if RentalPostedOrderLine.FindSet(false, false) then
-        //     repeat
         RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', "Starting Date", "Ending Date");
         RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', "Starting Date", "Ending Date");
         IF not RentalPostedOrderLine.IsEmpty() THEN
             Error(ErrMsg);
-        //     RentalPostedOrderLine.SetFilter("Ending Date", '>= %1', "Ending Date");
-        //     RentalPostedOrderLine.SetFilter("Starting Date", '<= %1', "Ending Date");
-        //     if RentalPostedOrderLine.FindSet(false, false) then
-        //         Error(ErrMsg);
-        //     if ("Starting Date" < RentalPostedOrderLine."Starting Date") and
-        //  ("Ending Date" > RentalPostedOrderLine."Ending Date") then
-        //         Error(ErrMsg);
-        // until RentalPostedOrderLine.Next() = 0;
-    end;
-
-    procedure CheckStartingDate()
-    begin
-        RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
-        if RentalPostedOrderLine.FindSet(false, false) then
-            repeat
-                if (RentalPostedOrderLine."Starting Date" <= "Starting Date") and
-                (RentalPostedOrderLine."Ending Date" >= "Starting Date") then
-                    Error(ErrMsg);
-                if ("Starting Date" < RentalPostedOrderLine."Starting Date") and
-          ("Ending Date" > RentalPostedOrderLine."Ending Date") then
-                    Error(ErrMsg);
-            until RentalPostedOrderLine.Next() = 0;
     end;
 
     procedure UpdateLineDiscount(CustomerDiscount: decimal): boolean
