@@ -7,36 +7,16 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:DataSourceID>95bcd84d-5d99-4275-8735-100c72b8bb66</rd:DataSourceID>
+      <rd:DataSourceID>80ebb6af-b453-4287-8939-3f118d71e157</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Image Name="Image1">
-            <Source>Embedded</Source>
-            <Value>RentalCarsUA</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.34944in</Top>
-            <Left>0.57167in</Left>
-            <Height>0.5in</Height>
-            <Width>0.5in</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
           <Tablix Name="Tablix1">
             <TablixBody>
               <TablixColumns>
-                <TablixColumn>
-                  <Width>1in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1in</Width>
-                </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
@@ -50,36 +30,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox2">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>No</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox2</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -87,7 +37,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Car Description</Value>
+                                  <Value>No</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -110,51 +60,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
+                        <Textbox Name="Textbox3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Starting Date</Value>
+                                  <Value>Car Description</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox7">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Ending Date</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -175,7 +95,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="No1">
+                        <Textbox Name="No">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -189,7 +109,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>No1</rd:DefaultName>
+                          <rd:DefaultName>No</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -233,74 +153,12 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Starting_Date">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Starting_Date.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Starting_Date</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Ending_Date">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Ending_Date.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Ending_Date</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
-                <TablixMember />
-                <TablixMember />
                 <TablixMember />
                 <TablixMember />
               </TablixMembers>
@@ -316,11 +174,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>1.38417in</Top>
-            <Left>0.59944in</Left>
+            <Left>0.11334in</Left>
             <Height>0.5in</Height>
-            <Width>4in</Width>
-            <ZIndex>1</ZIndex>
+            <Width>2in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -328,11 +184,18 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>1.34054cm</Height>
         <Style />
       </Body>
-      <Width>7.37028in</Width>
+      <Width>20cm</Width>
       <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0.5cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
@@ -427,7 +290,7 @@ xeckotbjqYz0dbitRaSVlKFIBPlzFOGEx7qmJtm3vLHva35Tcg0HMNRlOhR7NShh1rajDe5LMrSYstUh
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">
