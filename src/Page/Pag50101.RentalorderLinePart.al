@@ -44,11 +44,13 @@ page 50101 "Rental Order Line Part"
                 {
                     ToolTip = 'Specifies the value of the Starting Date field';
                     ApplicationArea = All;
+                    StyleExpr = MyFieldTxt;
                 }
                 field("Ending Date"; Rec."Ending Date")
                 {
                     ToolTip = 'Specifies the value of the Ending Date field';
                     ApplicationArea = All;
+                    StyleExpr = MyFieldTxt;
                 }
                 field("Days Amt."; Rec."Days Amt.")
                 {
@@ -75,4 +77,11 @@ page 50101 "Rental Order Line Part"
             }
         }
     }
+    trigger OnAfterGetRecord()
+    begin
+        MyFieldTxt := 'Unfavorable'
+    end;
+
+    var
+        MyFieldTxt: Text;
 }

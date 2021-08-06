@@ -24,47 +24,22 @@ report 50101 "Rental Orders Report"
             column(Ending_Date; EndingDate)
             {
             }
-
             trigger OnAfterGetRecord()
             var
                 RentalPostedOrderLine: Record "Rental Posted Order Line";
-                RentalOrderLine: Record "Rental Order Line";
             begin
-                RentalOrderLine."Starting Date" := RentalOrderLine."Ending Date";
                 RentalPostedOrderLine.SetRange("Car No.", Item."No.");
                 if StartingDate = 0D then
-                    Error('');
-                StartingDate := WorkDate();
-
+                    Error('Specify a Starting Date');
+                // StartingDate := Workdate();
                 if EndingDate <> 0D then begin
                     RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', StartingDate, EndingDate);
                     RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', StartingDate, EndingDate);
                 end else
                     RentalPostedOrderLine.SETFILTER("Starting Date", '%1..', StartingDate);
-
-                if RentalPostedOrderLine.IsEmpty() = IsAvailable then
+                if not RentalPostedOrderLine.IsEmpty() = IsAvailable then
                     CurrReport.Skip();
             end;
-            // dataitem("Rental Posted Order Line"; "Rental Posted Order Line")
-            // {
-            //     RequestFilterFields = "Car No.", "Starting Date", "Ending Date";
-            //     DataItemLink = "Order No." = field("No.");
-            //     column(Order_No_; "Order No.")
-            //     {
-            //     }
-            //     column(Car_No_; "Car No.")
-            //     {
-            //     }
-            //     column(Car_Description; "Car Description")
-            //     {
-            //     }
-            //     column(Starting_Date; "Starting Date")
-            //     {
-            //     }
-            //     column(Ending_Date; "Ending Date")
-            //     {
-            //     }
-            // }
         }
     }
 
@@ -88,6 +63,14 @@ report 50101 "Rental Orders Report"
                         ApplicationArea = Basic, Suite;
                         Caption = 'Ending Date';
                         ToolTip = 'Specifies the Ending Date';
+
+                        trigger OnValidate()
+                        begin
+                            if (EndingDate < StartingDate)
+                                and (EndingDate <> 0D)
+                            then
+                                Error('Ending Date is earlier than Starting Date');
+                        end;
                     }
                     field(CarIsAvailable; IsAvailable)
                     {

@@ -1,9 +1,5 @@
-/// <summary>
-/// Page Rental Rental Rental Cars Card (ID 50105).
-/// </summary>
 page 50105 "Rental Cars Card"
 {
-
     Caption = 'Car specifications';
     DataCaptionExpression = '';
     PageType = Card;
@@ -12,8 +8,6 @@ page 50105 "Rental Cars Card"
     ApplicationArea = all;
     PopulateAllFields = true;
     PromotedActionCategories = 'New,Process,Report,Item,History,Prices & Discounts,Approve,Request Approval';
-
-
     layout
     {
         area(content)
@@ -62,12 +56,13 @@ page 50105 "Rental Cars Card"
             part(ItemPicture; "Item Picture")
             {
                 ApplicationArea = All;
-                Caption = 'Picture';
+                Caption = 'Саг Photo';
                 SubPageLink = "No." = FIELD("No.");
             }
             part(ItemAttributesFactbox; "Item Attributes Factbox")
             {
                 ApplicationArea = Basic, Suite;
+                Caption = 'Car Attributes';
             }
         }
 

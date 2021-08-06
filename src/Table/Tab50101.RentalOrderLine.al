@@ -122,7 +122,6 @@ table 50101 "Rental Order Line"
             Clustered = true;
         }
     }
-
     var
         RentalPostedOrderLine: Record "Rental Posted Order Line";
         ErrMsg: Label 'The car is unavailable on this date';
@@ -134,6 +133,7 @@ table 50101 "Rental Order Line"
         RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', "Starting Date", "Ending Date");
         IF not RentalPostedOrderLine.IsEmpty() THEN
             Error(ErrMsg);
+
     end;
 
     procedure UpdateLineDiscount(CustomerDiscount: decimal): boolean

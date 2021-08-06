@@ -58,6 +58,23 @@ page 50102 "Rental Order Card"
                 UpdatePropagation = Both;
             }
         }
+        area(factboxes)
+        {
+            part(ItemPicture; "Item Picture")
+            {
+                ApplicationArea = All;
+                Caption = 'Car Photo';
+                Provider = "Rental Order Line Part";
+                SubPageLink = "No." = field("Car No.");
+            }
+            part(ItemAttributesFactbox; "Item Attributes Factbox")
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'Car Attributes';
+                // Provider = "Rental Order Line Part";
+                // // SubPageLink = ID = field("Car No.");
+            }
+        }
     }
     actions
     {
@@ -112,7 +129,9 @@ page 50102 "Rental Order Card"
             if InstructionMgt.ShowConfirm(StrSubstNo(OpenPostedRentalOrderQst, RentalPostedOrder."No."),
                  InstructionMgt.ShowPostedConfirmationMessageCode())
             then
-                PAGE.Run(PAGE::"Rental Posted Orders", RentalPostedOrder);
+                PAGE.Run(PAGE::"Rental Posted Order Card", RentalPostedOrder);
         end;
     end;
+
+
 }
