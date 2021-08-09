@@ -26,7 +26,6 @@ page 50101 "Rental Order Line Part"
                     ApplicationArea = All;
                     trigger OnValidate()
                     begin
-                        // CurrPage.Update(true);
                         Rec.CalcFields("Car Description");
                     end;
                 }
@@ -40,24 +39,28 @@ page 50101 "Rental Order Line Part"
                     ToolTip = 'Specifies the value of the Price field';
                     ApplicationArea = All;
                 }
+                field("Unit Cost"; Rec."Unit Cost")
+                {
+                    ToolTip = 'Specifies the value of the Unit Cost field';
+                    ApplicationArea = All;
+                }
                 field("Starting Date"; Rec."Starting Date")
                 {
                     ToolTip = 'Specifies the value of the Starting Date field';
                     ApplicationArea = All;
-                    StyleExpr = MyFieldTxt;
+                    StyleExpr = CarUnavailable;
                 }
                 field("Ending Date"; Rec."Ending Date")
                 {
                     ToolTip = 'Specifies the value of the Ending Date field';
                     ApplicationArea = All;
-                    StyleExpr = MyFieldTxt;
+                    StyleExpr = CarUnavailable;
                 }
                 field("Days Amt."; Rec."Days Amt.")
                 {
                     ToolTip = 'Specifies the value of the Days Amt. field';
                     ApplicationArea = All;
                 }
-
                 field("Rental Car Discount"; Rec."Rental Car Discount")
                 {
                     ToolTip = 'Specifies the value of the Car Discount field';
@@ -79,9 +82,27 @@ page 50101 "Rental Order Line Part"
     }
     trigger OnAfterGetRecord()
     begin
-        MyFieldTxt := 'Unfavorable'
+        SetStyle();
+    end;
+
+    local procedure SetStyle()
+    begin
+        SetUnfavorableStyle(CarUnavailable);
+    end;
+
+    local procedure SetUnfavorableStyle(var Style: Text)
+    var
+        RentalPostedOrderLine: Record "Rental Posted Order Line";
+    begin
+        RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
+        RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', Rec."Starting Date", Rec."Ending Date");
+        RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', Rec."Starting Date", Rec."Ending Date");
+        IF not RentalPostedOrderLine.IsEmpty() THEN
+            Style := 'Unfavorable'
+        else
+            Style := '';
     end;
 
     var
-        MyFieldTxt: Text;
+        CarUnavailable: Text;
 }

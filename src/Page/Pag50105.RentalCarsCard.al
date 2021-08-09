@@ -43,6 +43,12 @@ page 50105 "Rental Cars Card"
                 ToolTip = 'Specifies the value of the Unit Price field';
                 ApplicationArea = All;
             }
+            field("Unit Cost"; Rec."Unit Cost")
+            {
+                Caption = 'Unit Cost';
+                ToolTip = 'Specifies the value of the Unit Cost field';
+                ApplicationArea = All;
+            }
             field("Rental Car Discount"; Rec."Rental Car Discount")
             {
                 Caption = 'Discount';

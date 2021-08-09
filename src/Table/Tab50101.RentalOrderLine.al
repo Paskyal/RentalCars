@@ -39,7 +39,7 @@ table 50101 "Rental Order Line"
         }
         field(41; "Starting Date"; Date)
         {
-            Caption = 'Starting Date.';
+            Caption = 'Starting Date';
             DataClassification = CustomerContent;
 
             trigger OnValidate()
@@ -52,7 +52,7 @@ table 50101 "Rental Order Line"
         }
         field(42; "Ending Date"; Date)
         {
-            Caption = 'Ending Date.';
+            Caption = 'Ending Date';
             DataClassification = CustomerContent;
             trigger OnValidate()
             var
@@ -84,6 +84,11 @@ table 50101 "Rental Order Line"
                 UpdateLineAmount();
             end;
         }
+        field(61; "Unit Cost"; Decimal)
+        {
+            Caption = 'Unit Cost';
+            DataClassification = CustomerContent;
+        }
         field(62; "Rental Car Discount"; Decimal)
         {
             Caption = 'Car Discount';
@@ -95,7 +100,6 @@ table 50101 "Rental Order Line"
                 UpdateLineDiscount(0);
                 UpdateLineAmount();
             end;
-
         }
         field(70; "Line Discount"; Decimal)
         {
@@ -133,7 +137,6 @@ table 50101 "Rental Order Line"
         RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', "Starting Date", "Ending Date");
         IF not RentalPostedOrderLine.IsEmpty() THEN
             Error(ErrMsg);
-
     end;
 
     procedure UpdateLineDiscount(CustomerDiscount: decimal): boolean
@@ -163,6 +166,7 @@ table 50101 "Rental Order Line"
         Item.Get("Car No.");
         Rec.Validate("Price a day", Item."Unit Price");
         Rec.Validate("Rental Car Discount", Item."Rental Car Discount");
+        Rec.Validate("Unit Cost", Item."Unit Cost");
     end;
 
     local procedure UpdateDaysAmt()

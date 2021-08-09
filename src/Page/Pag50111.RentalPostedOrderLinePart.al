@@ -30,7 +30,6 @@ page 50111 "Rental Posted Order Line Part"
                     ApplicationArea = All;
                     trigger OnValidate()
                     begin
-                        // CurrPage.Update(true);
                         Rec.CalcFields("Car Description");
                     end;
                 }
