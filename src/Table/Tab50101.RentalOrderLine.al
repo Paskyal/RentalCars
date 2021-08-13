@@ -21,7 +21,7 @@ table 50101 "Rental Order Line"
         }
         field(30; "Car No."; Code[20])
         {
-            Caption = 'Item No.';
+            Caption = 'Car No.';
             DataClassification = CustomerContent;
             TableRelation = "Item";
             trigger OnValidate()
@@ -116,6 +116,16 @@ table 50101 "Rental Order Line"
         {
             Caption = 'Line Amount';
             DataClassification = CustomerContent;
+            Editable = false;
+        }
+        field(81; "Average Cost"; Decimal)
+        {
+            Caption = 'Average Cost';
+            DataClassification = CustomerContent;
+        }
+        field(82; "Qty.of days in rent"; Integer)
+        {
+            Caption = 'Qty.of days in rent';
             Editable = false;
         }
     }

@@ -67,12 +67,13 @@ page 50102 "Rental Order Card"
                 Provider = "Rental Order Line Part";
                 SubPageLink = "No." = field("Car No.");
             }
-            part(ItemAttributesFactbox; "Item Attributes Factbox")
+
+            part(RentalLinesDetails; "Rental Line FactBox")
             {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Car Attributes';
-                // Provider = "Rental Order Line Part";
-                // // SubPageLink = ID = field("Car No.");
+                ApplicationArea = All;
+                Caption = 'Rental Line Details';
+                Provider = "Rental Order Line Part";
+                SubPageLink = "Car No." = field("Car No.");
             }
         }
     }

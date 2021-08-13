@@ -21,7 +21,7 @@ table 50104 "Rental Posted Order Line"
         }
         field(30; "Car No."; Code[20])
         {
-            Caption = 'Item No.';
+            Caption = 'Car No.';
             DataClassification = CustomerContent;
             TableRelation = "Item";
             trigger OnValidate()
