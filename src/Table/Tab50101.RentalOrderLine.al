@@ -123,11 +123,11 @@ table 50101 "Rental Order Line"
             Caption = 'Average Cost';
             DataClassification = CustomerContent;
         }
-        field(82; "Qty.of days in rent"; Integer)
-        {
-            Caption = 'Qty.of days in rent';
-            Editable = false;
-        }
+        // field(82; "Qty.of days in rent"; Integer)
+        // {
+        //     Caption = 'Qty.of days in rent';
+        //     Editable = false;
+        // }
     }
     keys
     {

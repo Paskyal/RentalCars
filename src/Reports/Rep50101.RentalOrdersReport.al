@@ -31,7 +31,6 @@ report 50101 "Rental Orders Report"
                 RentalPostedOrderLine.SetRange("Car No.", Item."No.");
                 if StartingDate = 0D then
                     Error('Specify a Starting Date');
-                // StartingDate := Workdate();
                 if EndingDate <> 0D then begin
                     RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', StartingDate, EndingDate);
                     RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', StartingDate, EndingDate);
