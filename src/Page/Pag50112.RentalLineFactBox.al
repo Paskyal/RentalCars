@@ -19,19 +19,25 @@ page 50112 "Rental Line FactBox"
                 ToolTip = 'Specifies the value of the Car Description field';
                 ApplicationArea = All;
             }
+            field(Availability; RentalHistory.CarAvailability())
+            {
+                ToolTip = 'Specifies the value of the Availability field';
+                ApplicationArea = All;
+                Caption = 'Availability';
+            }
             field("Average Cost"; Rec."Average Cost")
             {
                 ToolTip = 'Specifies the value of the Average Cost field';
                 ApplicationArea = All;
             }
-            field("Qty.of days in rent"; RentalHistory.CountDaysInRent(Rec."Car No."))
+            field("Qty.of days in rent"; RentalHistory.DaysInRentCount(Rec."Car No."))
             {
                 Caption = 'Qty.of days in rent';
                 ToolTip = 'Specifies the value of the Qty.of days in rent field';
                 ApplicationArea = All;
 
             }
-            field("Idle Days"; IdleDays())
+            field("Idle Days"; RentalHistory.IdleDaysCount(Rec."Car No."))
             {
                 Caption = 'Idle days';
                 ToolTip = 'Specifies the value of the Idle Days field';
@@ -39,21 +45,7 @@ page 50112 "Rental Line FactBox"
             }
         }
     }
-    procedure IdleDays(): Integer
-    var
-    // RentalPostedOrderLine: Record "Rental Posted Order Line";
-    begin
-        //     RentalPostedOrderLine.SetRange("Car No.", Rec."Car No.");
-        //     RentalPostedOrderLine.SetFilter("Starting Date", '<>0');
-        //     if RentalPostedOrderLine.FindFirst() then begin //todo
 
-        //         RentalPostedOrderLine.SETFILTER("Starting Date", '%1|%1..%2|<%1&<%2|>%1&<%2', StartingDate, EndingDate);
-        //         RentalPostedOrderLine.SETFILTER("Ending Date", '%2|%1..%2|>%1&<%2|>%1', StartingDate, EndingDate);
-        //     end else
-        //         RentalPostedOrderLine.SETFILTER("Starting Date", '%1..', StartingDate);
-        //     if not RentalPostedOrderLine.IsEmpty() = IsAvailable then
-        //         CurrReport.Skip();
-    end;
 
     var
         RentalHistory: Codeunit "Rental History";

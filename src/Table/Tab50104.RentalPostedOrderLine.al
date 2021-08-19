@@ -122,6 +122,14 @@ table 50104 "Rental Posted Order Line"
         {
             Clustered = true;
         }
+        key("Starting Date"; "Starting Date")
+        {
+            Clustered = false;
+        }
+        key("Ending Date"; "Ending Date")
+        {
+            Clustered = false;
+        }
     }
     local procedure CopyFromItem()
     var
