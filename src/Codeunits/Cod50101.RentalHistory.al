@@ -4,11 +4,6 @@ codeunit 50101 "Rental History"
     begin
     end;
 
-    // procedure IdleDays(CarNo: Code[20]; "Starting Date": Date; "Ending Date": Date): Integer
-    // begin
-    //     exit(0);
-    // end;
-
     procedure DaysInRentCount(CarNo: Code[20]): Integer
     var
         RentalPostedOrderLine: Record "Rental Posted Order Line";
@@ -18,9 +13,17 @@ codeunit 50101 "Rental History"
         exit(RentalPostedOrderLine."Days Amt.");
     end;
 
-    procedure CarAvailability(): Boolean
+    procedure CarAvailability(CarNo: Code[20]): Boolean
+    var
+        // RentalOrderLine: Record "Rental Order Line";
+        RentalPostedOrderLine: Record "Rental Posted Order Line";
     begin
-
+        RentalPostedOrderLine.SetRange("Car No.", CarNo);
+        // RentalPostedOrderLine.SETFILTER("Starting Date", '=%1', Today); //'%1|%1..%2|<%1&<%2|>%1&<%2', Today RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
+        // RentalPostedOrderLine.SETFILTER("Ending Date", '=%1', Today); //'%2|%1..%2|>%1&<%2|>%1', RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
+        // IF RentalPostedOrderLine.IsEmpty() THEN
+        if (RentalPostedOrderLine."Starting Date" <= Today) and (RentalPostedOrderLine."Ending Date" >= Today) then
+            exit(false);
     end;
 
     procedure IdleDaysCount(CarNo: Code[20]): Integer
