@@ -15,15 +15,16 @@ codeunit 50101 "Rental History"
 
     procedure CarAvailability(CarNo: Code[20]): Boolean
     var
-        // RentalOrderLine: Record "Rental Order Line";
         RentalPostedOrderLine: Record "Rental Posted Order Line";
     begin
         RentalPostedOrderLine.SetRange("Car No.", CarNo);
+        RentalPostedOrderLine.SetFilter("Starting Date", '%1|<%1', today);
+        RentalPostedOrderLine.SetFilter("Ending Date", '%1|>%1', today);
+        if RentalPostedOrderLine.IsEmpty() then
+            exit(true)
         // RentalPostedOrderLine.SETFILTER("Starting Date", '=%1', Today); //'%1|%1..%2|<%1&<%2|>%1&<%2', Today RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
         // RentalPostedOrderLine.SETFILTER("Ending Date", '=%1', Today); //'%2|%1..%2|>%1&<%2|>%1', RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
-        // IF RentalPostedOrderLine.IsEmpty() THEN
-        if (RentalPostedOrderLine."Starting Date" <= Today) and (RentalPostedOrderLine."Ending Date" >= Today) then
-            exit(false);
+        // RentalOrder.SetFilter("Posting Date", '%1|%2|%1..%2', RentalPostedOrderLine."Starting Date", RentalPostedOrderLine."Ending Date");
     end;
 
     procedure IdleDaysCount(CarNo: Code[20]): Integer

@@ -23,7 +23,7 @@ table 50101 "Rental Order Line"
         {
             Caption = 'Car No.';
             DataClassification = CustomerContent;
-            TableRelation = "Item";
+            TableRelation = "Item" WHERE(Type = const(Rental));
             trigger OnValidate()
             begin
                 CopyFromItem();
@@ -43,9 +43,11 @@ table 50101 "Rental Order Line"
             DataClassification = CustomerContent;
 
             trigger OnValidate()
+            var
+                StartDateTooLateErr: Label 'Starting Date cannot be later than Ending Date';
             begin
                 if (Rec."Ending Date" <> 0D) and (Rec."Starting Date" > Rec."Ending Date") then
-                    Error('Starting Date cannot be later than Ending Date');
+                    Error(StartDateTooLateErr);
                 CheckAvailableDates();
                 UpdateDaysAmt();
             end;
