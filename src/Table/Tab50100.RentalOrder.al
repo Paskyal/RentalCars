@@ -23,7 +23,6 @@ table 50100 "Rental Order"
             Caption = 'Salesperson Name';
             DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
-
         }
         field(3; "Customer No."; Code[20])
         {

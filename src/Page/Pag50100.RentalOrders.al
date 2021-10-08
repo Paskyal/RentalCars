@@ -31,7 +31,7 @@ page 50100 "Rental Orders"
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
-                    ApplicationArea = Basic, Suite;
+                    ApplicationArea = All;
                     Caption = 'Customer Name';
                     ToolTip = 'Specifies the value of the Customer Name field';
                 }
@@ -53,7 +53,7 @@ page 50100 "Rental Orders"
                 Image = Post;
                 action(Post)
                 {
-                    ApplicationArea = Basic, Suite;
+                    ApplicationArea = All;
                     Caption = 'Post';
                     Ellipsis = true;
                     Image = PostOrder;
