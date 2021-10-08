@@ -15,5 +15,26 @@ pageextension 50100 "Rental Customer Card" extends "Customer Card"
                 MinValue = 0;
             }
         }
+        addbefore(SalesHistSelltoFactBox)
+        {
+            part(RentalHistRenttoFactBox; "Rental Hist. Rent-to FactBox")
+            {
+                ApplicationArea = All;
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+            }
+            part(RentalCustomerStatFactBox; "Rental Customer Stat. FactBox")
+            {
+                ApplicationArea = All;
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+            }
+        }
     }
 }

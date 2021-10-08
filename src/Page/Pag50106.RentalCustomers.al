@@ -61,7 +61,7 @@ page 50106 "Rental Customers"
                               "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
                               "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
             }
-            part(CustomerStatisticsFactBox; "Customer Statistics FactBox")
+            part(RentalCustomerStatFactBox; "Rental Customer Stat. FactBox")
             {
                 ApplicationArea = All;
                 SubPageLink = "No." = FIELD("No."),

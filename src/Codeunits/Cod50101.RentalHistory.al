@@ -22,9 +22,6 @@ codeunit 50101 "Rental History"
         RentalPostedOrderLine.SetFilter("Ending Date", '%1|>%1', today);
         if RentalPostedOrderLine.IsEmpty() then
             exit(true)
-        // RentalPostedOrderLine.SETFILTER("Starting Date", '=%1', Today); //'%1|%1..%2|<%1&<%2|>%1&<%2', Today RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
-        // RentalPostedOrderLine.SETFILTER("Ending Date", '=%1', Today); //'%2|%1..%2|>%1&<%2|>%1', RentalOrderLine."Starting Date", RentalOrderLine."Ending Date");
-        // RentalOrder.SetFilter("Posting Date", '%1|%2|%1..%2', RentalPostedOrderLine."Starting Date", RentalPostedOrderLine."Ending Date");
     end;
 
     procedure IdleDaysCount(CarNo: Code[20]): Integer
