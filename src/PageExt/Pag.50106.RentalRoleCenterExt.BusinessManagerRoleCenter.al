@@ -32,6 +32,12 @@ pageextension 50106 "Rental RoleCenterExt" extends "Business Manager Role Center
                     Caption = 'Rental Orders Report';
                     RunObject = report "Rental Orders Report";
                 }
+                action("Rental Salespersons/Purchasers")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Rental Purchasers';
+                    RunObject = page "Salespersons/Purchasers";
+                }
             }
             group("Rental Posted")
             {

@@ -47,7 +47,25 @@ page 50104 "Rental Cars"
                     ApplicationArea = All;
                 }
             }
-
+        }
+        area(factboxes)
+        {
+            part(RentalCarHistoryFactBox; "Rental Car History FactBox")
+            {
+                ApplicationArea = All;
+                SubPageLink = "No." = FIELD("No."),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+            }
+            part(RentalCarStatFactBox; "Rental Car Stat. FactBox")
+            {
+                ApplicationArea = All;
+                SubPageLink = "No." = FIELD("No."),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+            }
         }
     }
     actions

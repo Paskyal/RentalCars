@@ -1,39 +1,22 @@
-page 50114 "Rental Customer Stat. FactBox"
+page 50118 "Rental Salespers.Stat. FactBox"
 {
-    Caption = 'Customer Statistics';
+    Caption = 'Salesperson statistic';
     PageType = CardPart;
-    SourceTable = Customer;
+    SourceTable = "Salesperson/Purchaser";
 
     layout
     {
         area(content)
         {
-            field("No."; Rec."No.")
+            field("No."; Rec.Name)
             {
                 ApplicationArea = All;
-                Caption = 'Customer No.';
-                ToolTip = 'Specifies the number of the customer. The field is either filled automatically from a defined number series, or you enter the number manually because you have enabled manual number entry in the number-series setup.';
+                Caption = 'Car No.';
+                ToolTip = 'Specifies the value of the Car No. field.';
 
                 trigger OnDrillDown()
                 begin
                     ShowDetails();
-                end;
-            }
-            field("Balance (LCY)"; Rec."Balance (LCY)")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the payment amount that the customer owes for completed sales. This value is also known as the customer''s balance.';
-
-                trigger OnDrillDown()
-                var
-                    DtldCustLedgEntry: Record "Detailed Cust. Ledg. Entry";
-                    CustLedgEntry: Record "Cust. Ledger Entry";
-                begin
-                    DtldCustLedgEntry.SetRange("Customer No.", Rec."No.");
-                    Rec.CopyFilter("Global Dimension 1 Filter", DtldCustLedgEntry."Initial Entry Global Dim. 1");
-                    Rec.CopyFilter("Global Dimension 2 Filter", DtldCustLedgEntry."Initial Entry Global Dim. 2");
-                    Rec.CopyFilter("Currency Filter", DtldCustLedgEntry."Currency Code");
-                    CustLedgEntry.DrillDownOnEntries(DtldCustLedgEntry);
                 end;
             }
             group("Rental Order")
@@ -105,29 +88,29 @@ page 50114 "Rental Customer Stat. FactBox"
         }
     }
 
-    trigger OnAfterGetCurrRecord()
-    var
-        CustomerNo: Code[20];
-        CustomerNoFilter: Text;
-    begin
-        Rec.FilterGroup(4);
-        // Get the customer number and set the current customer number
-        CustomerNoFilter := Rec.GetFilter("No.");
-        if (CustomerNoFilter = '') then begin
-            Rec.FilterGroup(0);
-            CustomerNoFilter := Rec.GetFilter("No.");
-        end;
+    // trigger OnAfterGetCurrRecord()
+    // var
+    //     CustomerNo: Code[20];
+    //     CustomerNoFilter: Text;
+    // begin
+    //     Rec.FilterGroup(4);
+    //     // Get the customer number and set the current customer number
+    //     CustomerNoFilter := Rec.GetFilter("No.");
+    //     if (CustomerNoFilter = '') then begin
+    //         Rec.FilterGroup(0);
+    //         CustomerNoFilter := Rec.GetFilter("No.");
+    //     end;
 
-        CustomerNo := CopyStr(CustomerNoFilter, 1, MaxStrLen(CustomerNo));
-        if CustomerNo <> CurrCustomerNo then begin
-            CurrCustomerNo := CustomerNo;
-            CalculateFieldValues(CurrCustomerNo);
-        end;
-    end;
+    //     CustomerNo := CopyStr(CustomerNoFilter, 1, MaxStrLen(CustomerNo));
+    //     if CustomerNo <> CurrCustomerNo then begin
+    //         CurrCustomerNo := CustomerNo;
+    //         CalculateFieldValues(CurrCustomerNo);
+    //     end;
+    // end;
 
     var
         TaskIdCalculateCue: Integer;
-        CurrCustomerNo: Code[20];
+    // CurrCustomerNo: Code[20];
 
     protected var
         LastPaymentDate: Date;

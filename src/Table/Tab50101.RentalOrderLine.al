@@ -14,6 +14,7 @@ table 50101 "Rental Order Line"
             TableRelation = "Rental Order";
             Editable = false;
         }
+
         field(20; "Line No."; Integer)
         {
             Caption = 'Line No.';
@@ -35,7 +36,6 @@ table 50101 "Rental Order Line"
             FieldClass = FlowField;
             CalcFormula = lookup(Item."Description" where("No." = field("Car No.")));
             Editable = false;
-
         }
         field(41; "Starting Date"; Date)
         {

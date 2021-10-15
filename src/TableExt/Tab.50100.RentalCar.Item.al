@@ -32,5 +32,40 @@ tableextension 50100 "Rental Car" extends Item
             Caption = 'Car Discount';
             DataClassification = CustomerContent;
         }
+        field(50111; "Rental No. of Posted Orders"; Integer)
+        {
+            CalcFormula = Count("Rental Posted Order Line" where("Car No." = field("No.")));
+            Caption = 'No. of Rental Posted Orders';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(50112; "Rental No. of Orders"; Integer)
+        {
+            CalcFormula = Count("Rental Order Line" where("Car No." = field("No.")));
+            Caption = 'No. of Rental Orders';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(50113; "Rental Average Cost"; Integer)
+        {
+            CalcFormula = Count("Rental Order Line" where("Car No." = field("No.")));
+            Caption = 'Rental Average Cost';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(50114; "Rental Average Price"; Integer)
+        {
+            CalcFormula = Count("Rental Order Line" where("Car No." = field("No.")));
+            Caption = 'Rental Average Price';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(50115; "Rental Average Profit"; Integer)
+        {
+            CalcFormula = Count("Rental Order Line" where("Car No." = field("No.")));
+            Caption = 'Rental Average Profit';
+            Editable = false;
+            FieldClass = FlowField;
+        }
     }
 }
