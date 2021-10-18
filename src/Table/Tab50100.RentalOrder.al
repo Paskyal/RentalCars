@@ -18,13 +18,23 @@ table 50100 "Rental Order"
                 end;
             end;
         }
-        field(2; "Salesperson Name"; Code[50])
+        field(2; "Salesperson Code"; Code[50])
         {
-            Caption = 'Salesperson Name';
+            Caption = 'Salesperson Code';
             DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
         }
-        field(3; "Customer No."; Code[20])
+        field(3; "Salesperson Name"; Text[100])
+        {
+            Caption = 'Salesperson Name';
+            Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Salesperson/Purchaser".Name WHERE("Name" = field("Salesperson Code")));
+            TableRelation = "Salesperson/Purchaser".Name;
+            ValidateTableRelation = false;
+
+        }
+        field(4; "Customer No."; Code[20])
         {
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
@@ -34,12 +44,12 @@ table 50100 "Rental Order"
                 CopyFromCustomer();
             end;
         }
-        field(4; "Posting Date"; Date)
+        field(5; "Posting Date"; Date)
         {
             Caption = 'Posting Date';
             DataClassification = CustomerContent;
         }
-        field(5; "Customer Name"; Text[100])
+        field(6; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
             Editable = false;
@@ -48,14 +58,14 @@ table 50100 "Rental Order"
             TableRelation = Customer.Name;
             ValidateTableRelation = false;
         }
-        field(6; "No. Series"; Code[20])
+        field(7; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             DataClassification = CustomerContent;
             Editable = false;
             TableRelation = "No. Series";
         }
-        field(7; "Rental Customer Discount"; Decimal)
+        field(8; "Rental Customer Discount"; Decimal)
         {
             Caption = 'Customer Discount';
             DataClassification = CustomerContent;

@@ -40,9 +40,14 @@ page 50102 "Rental Order Card"
                     ToolTip = 'Specifies the value of the Customer Discount field';
                     ApplicationArea = All;
                 }
+                field("Salesperson Code"; Rec."Salesperson Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Salesperson Code field.';
+                }
                 field("Salesperson Name"; Rec."Salesperson Name")
                 {
-                    ToolTip = 'Specifies the value of the Salesperson No. field';
+                    ToolTip = 'Specifies the value of the Salesperson Name field';
                     ApplicationArea = All;
                 }
                 field("Posting Date"; Rec."Posting Date")

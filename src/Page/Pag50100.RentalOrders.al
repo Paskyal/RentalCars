@@ -18,6 +18,11 @@ page 50100 "Rental Orders"
                     ToolTip = 'Specifies the value of the Doc. No. field';
                     ApplicationArea = All;
                 }
+                field("Salesperson Code"; Rec."Salesperson Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Salesperson Name field.';
+                }
                 field("Salesperson Name"; Rec."Salesperson Name")
                 {
                     ToolTip = 'Specifies the value of the Salesperson No. field';
@@ -41,6 +46,7 @@ page 50100 "Rental Orders"
                     ApplicationArea = All;
                 }
             }
+
         }
     }
     actions
