@@ -22,11 +22,13 @@ page 50100 "Rental Orders"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Salesperson Name field.';
+                    Visible = false;
                 }
                 field("Salesperson Name"; Rec."Salesperson Name")
                 {
                     ToolTip = 'Specifies the value of the Salesperson No. field';
                     ApplicationArea = All;
+                    Caption = 'Salesperson Name';
                 }
                 field("Customer No."; Rec."Customer No.")
                 {

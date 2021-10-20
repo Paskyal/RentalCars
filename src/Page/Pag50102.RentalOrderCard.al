@@ -25,6 +25,7 @@ page 50102 "Rental Order Card"
 
                     trigger OnValidate()
                     begin
+                        // CustomerNoValidate(Rec, xRec);
                         CurrPage.Update(true);
                     end;
                 }
@@ -34,6 +35,18 @@ page 50102 "Rental Order Card"
                     Caption = 'Customer Name';
                     ShowMandatory = true;
                     ToolTip = 'Specifies the name of the customer who will receive the products and be billed by default.';
+
+                    trigger OnValidate()
+                    var
+                    begin
+                        // CustomerNoValidate(Rec, xRec);
+                        CurrPage.Update(true);
+                    end;
+
+                    trigger OnLookup(var Text: Text): Boolean
+                    begin
+                        exit(Rec.LookupCustomerName(Text));
+                    end;
                 }
                 field("Rental Customer Discount"; Rec."Rental Customer Discount")
                 {
@@ -44,11 +57,16 @@ page 50102 "Rental Order Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
+                    trigger OnValidate()
+                    begin
+                        CurrPage.Update(true);
+                    end;
                 }
                 field("Salesperson Name"; Rec."Salesperson Name")
                 {
                     ToolTip = 'Specifies the value of the Salesperson Name field';
                     ApplicationArea = All;
+                    ShowMandatory = true;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
@@ -138,6 +156,13 @@ page 50102 "Rental Order Card"
                 PAGE.Run(PAGE::"Rental Posted Order Card", RentalPostedOrder);
         end;
     end;
+
+    // Local procedure CustomerNoValidate(var RentalOrder: Record "Rental Order"; var xRentalOrder: Record "Rental Order")
+    // begin
+    //     if RentalOrder.GetFilter("Customer No.") = xRentalOrder."Customer No." then
+    //         if RentalOrder."Customer No." <> xRentalOrder."Customer No." then
+    //             RentalOrder.SetRange("Customer No.");
+    // end;
 
 
 }

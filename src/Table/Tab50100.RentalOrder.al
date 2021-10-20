@@ -29,7 +29,7 @@ table 50100 "Rental Order"
             Caption = 'Salesperson Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup("Salesperson/Purchaser".Name WHERE("Name" = field("Salesperson Code")));
+            CalcFormula = Lookup("Salesperson/Purchaser".Name WHERE("Code" = field("Salesperson Code")));
             TableRelation = "Salesperson/Purchaser".Name;
             ValidateTableRelation = false;
 
@@ -42,6 +42,7 @@ table 50100 "Rental Order"
             trigger OnValidate()
             begin
                 CopyFromCustomer();
+                Rec.Validate("Customer Name")
             end;
         }
         field(5; "Posting Date"; Date)
@@ -51,12 +52,21 @@ table 50100 "Rental Order"
         }
         field(6; "Customer Name"; Text[100])
         {
+            // Editable = false;
+            // FieldClass = FlowField;
+            // CalcFormula = Lookup(Customer.Name WHERE("No." = field("Customer No.")));
             Caption = 'Customer Name';
-            Editable = false;
-            FieldClass = FlowField;
-            CalcFormula = Lookup(Customer.Name WHERE("No." = field("Customer No.")));
             TableRelation = Customer.Name;
             ValidateTableRelation = false;
+
+            trigger OnValidate()
+            var
+                CustomerName: Text;
+            begin
+                CustomerName := "Customer Name";
+                LookupCustomerName(CustomerName);
+                "Customer Name" := CopyStr(CustomerName, 1, MaxStrLen("Customer Name"));
+            end;
         }
         field(7; "No. Series"; Code[20])
         {
@@ -146,6 +156,22 @@ table 50100 "Rental Order"
     begin
         RentalOrderLine.SetRange("Order No.", Rec."No.");
         RentalOrderLine.DeleteAll(true);
+    end;
+    // Delete if it is not successful
+    procedure LookupCustomerName(var CustomerName: Text): Boolean
+    var
+        Customer: Record Customer;
+    // RecVariant: Variant;
+    begin
+        if "Customer No." <> '' then
+            Customer.Get("Customer No.");
+
+        if Rec."Customer Name" = Customer.Name then
+            CustomerName := ''
+        else
+            CustomerName := Customer.Name;
+        // RecVariant := Customer;
+        exit(true);
     end;
 
     var
