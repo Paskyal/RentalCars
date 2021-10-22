@@ -45,7 +45,7 @@ page 50102 "Rental Order Card"
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
-                        exit(Rec.LookupCustomerName(Text));
+                        Rec.LookupCustomerName();
                     end;
                 }
                 field("Rental Customer Discount"; Rec."Rental Customer Discount")
@@ -58,7 +58,10 @@ page 50102 "Rental Order Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
                     trigger OnValidate()
+                    var
+                        Salesperson: Record "Salesperson/Purchaser";
                     begin
+                        Rec.Validate("Salesperson Name", Salesperson.Name);
                         CurrPage.Update(true);
                     end;
                 }
@@ -67,6 +70,15 @@ page 50102 "Rental Order Card"
                     ToolTip = 'Specifies the value of the Salesperson Name field';
                     ApplicationArea = All;
                     ShowMandatory = true;
+                    trigger OnValidate()
+                    begin
+                        CurrPage.Update(true);
+                    end;
+
+                    // trigger OnLookup(var Text: Text): Boolean
+                    // begin
+                    //     CurrPage.Update(true);
+                    // end;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {

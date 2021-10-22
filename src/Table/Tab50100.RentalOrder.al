@@ -23,16 +23,26 @@ table 50100 "Rental Order"
             Caption = 'Salesperson Code';
             DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
+
+            // trigger OnValidate()
+            // var
+            //     Salesperson: Record "Salesperson/Purchaser";
+            // begin
+            //     Rec.Validate("Salesperson Name", Salesperson.Name)
+            // end;
         }
         field(3; "Salesperson Name"; Text[100])
         {
             Caption = 'Salesperson Name';
-            Editable = false;
-            FieldClass = FlowField;
-            CalcFormula = Lookup("Salesperson/Purchaser".Name WHERE("Code" = field("Salesperson Code")));
             TableRelation = "Salesperson/Purchaser".Name;
             ValidateTableRelation = false;
-
+            // trigger OnValidate()
+            // var
+            //     SalespersonName: Text;
+            // begin
+            //     SalespersonName := "Salesperson Name";
+            //     "Salesperson Name" := CopyStr(SalespersonName, 1, MaxStrLen("Salesperson Name"));
+            // end;
         }
         field(4; "Customer No."; Code[20])
         {
@@ -52,20 +62,17 @@ table 50100 "Rental Order"
         }
         field(6; "Customer Name"; Text[100])
         {
-            // Editable = false;
-            // FieldClass = FlowField;
-            // CalcFormula = Lookup(Customer.Name WHERE("No." = field("Customer No.")));
             Caption = 'Customer Name';
             TableRelation = Customer.Name;
             ValidateTableRelation = false;
 
             trigger OnValidate()
             var
-                CustomerName: Text;
+                CustomerName: Text[100];
             begin
                 CustomerName := "Customer Name";
-                LookupCustomerName(CustomerName);
-                "Customer Name" := CopyStr(CustomerName, 1, MaxStrLen("Customer Name"));
+                SetCustomerName(CustomerName);
+                "Customer Name" := CustomerName;
             end;
         }
         field(7; "No. Series"; Code[20])
@@ -157,8 +164,20 @@ table 50100 "Rental Order"
         RentalOrderLine.SetRange("Order No.", Rec."No.");
         RentalOrderLine.DeleteAll(true);
     end;
+
     // Delete if it is not successful
-    procedure LookupCustomerName(var CustomerName: Text): Boolean
+    procedure LookupCustomerName(): Boolean
+    var
+        Customer: Record Customer;
+    // RecVariant: Variant;
+    begin
+        if LookupCustomer(Customer) then
+            Validate("Customer No.", Customer."No.");
+        exit(true);
+    end;
+
+    // Delete if it is not successful
+    procedure SetCustomerName(var CustomerName: Text[100]): Boolean
     var
         Customer: Record Customer;
     // RecVariant: Variant;
@@ -173,6 +192,52 @@ table 50100 "Rental Order"
         // RecVariant := Customer;
         exit(true);
     end;
+
+    procedure LookupCustomer(var Customer: Record Customer): Boolean
+    var
+        CustomerLookup: Page "Customer Lookup";
+        Result: Boolean;
+    begin
+        CustomerLookup.SetTableView(Customer);
+        CustomerLookup.SetRecord(Customer);
+        CustomerLookup.LookupMode := true;
+        Result := CustomerLookup.RunModal() = ACTION::LookupOK;
+        if Result then
+            CustomerLookup.GetRecord(Customer)
+        else
+            Clear(Customer);
+
+        exit(Result);
+    end;
+
+    procedure ValidateSalespersonName(var SalespersonName: Text): Boolean
+    var
+        Salesperson: Record "Salesperson/Purchaser";
+    begin
+        if "Salesperson Code" <> '' then
+            Salesperson.Get("Salesperson Code");
+        if Rec."Salesperson Name" = Salesperson.Name then
+            SalespersonName := ''
+        else
+            SalespersonName := Salesperson.Name;
+        exit(true);
+    end;
+
+    // procedure LookupSalespersonCode(): Boolean //var SalespersonName: Text[100]
+    // var
+    //     Salesperson: Record "Salesperson/Purchaser";
+    // begin
+    //     Salesperson.Get("Salesperson Code");
+    //     Salesperson.SetRange("Code", Rec."Salesperson Code");
+
+    //     // if "Salesperson Code" <> '' then
+    //     //     Salesperson.Get("Salesperson Code");
+
+    //     // "Salesperson Name" := Salesperson.Name;
+    //     Rec.Validate("Salesperson Code", Salesperson."Code");
+    //     exit(true);
+    // end;
+
 
     var
         RentalSetup: Record "Rental Setup";
