@@ -39,7 +39,6 @@ page 50102 "Rental Order Card"
                     trigger OnValidate()
                     var
                     begin
-                        // CustomerNoValidate(Rec, xRec);
                         CurrPage.Update(true);
                     end;
 

@@ -118,7 +118,6 @@ table 50100 "Rental Order"
     begin
         GetRentalSetup();
         RentalSetup.Testfield("Order Nos.");
-
     end;
 
     local procedure GetRentalSetup()
@@ -165,22 +164,18 @@ table 50100 "Rental Order"
         RentalOrderLine.DeleteAll(true);
     end;
 
-    // Delete if it is not successful
     procedure LookupCustomerName(): Boolean
     var
         Customer: Record Customer;
-    // RecVariant: Variant;
     begin
         if LookupCustomer(Customer) then
             Validate("Customer No.", Customer."No.");
         exit(true);
     end;
 
-    // Delete if it is not successful
     procedure SetCustomerName(var CustomerName: Text[100]): Boolean
     var
         Customer: Record Customer;
-    // RecVariant: Variant;
     begin
         if "Customer No." <> '' then
             Customer.Get("Customer No.");
