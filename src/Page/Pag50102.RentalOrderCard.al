@@ -25,7 +25,6 @@ page 50102 "Rental Order Card"
 
                     trigger OnValidate()
                     begin
-                        // CustomerNoValidate(Rec, xRec);
                         CurrPage.Update(true);
                     end;
                 }
@@ -56,6 +55,7 @@ page 50102 "Rental Order Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
+                    Visible = false;
                     trigger OnValidate()
                     var
                         Salesperson: Record "Salesperson/Purchaser";
@@ -63,6 +63,7 @@ page 50102 "Rental Order Card"
                         Rec.Validate("Salesperson Name", Salesperson.Name);
                         CurrPage.Update(true);
                     end;
+
                 }
                 field("Salesperson Name"; Rec."Salesperson Name")
                 {

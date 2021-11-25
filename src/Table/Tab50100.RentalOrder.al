@@ -24,6 +24,7 @@ table 50100 "Rental Order"
             DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
 
+
             // trigger OnValidate()
             // var
             //     Salesperson: Record "Salesperson/Purchaser";
@@ -184,7 +185,6 @@ table 50100 "Rental Order"
             CustomerName := ''
         else
             CustomerName := Customer.Name;
-        // RecVariant := Customer;
         exit(true);
     end;
 
